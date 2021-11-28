@@ -1,0 +1,20 @@
+1.创建/myredis文件夹
+2.复制redis.conf配置到文件夹中
+3.配置已主两从，配置三个配置文件
+	redis6379.conf
+	redis6380.conf
+	redis6381.conf
+4.在三个配置文件写入内容
+	include /myredis/redis.conf
+	pidfile /var/run/文件名.pid
+	port 文件端口
+	dbfilename dump端口.rdb
+5.启动三个redis服务
+	在客户端使用info replication打印主从复制的相关信息 redis-cli -p 端口
+	在从机上执行slaveof 主机ip 端口
+	
+从服务器挂掉重启后的原理：
+	1.当从服务器连上主服务器之后，从服务器向主服务器发送进行数据同步消息；
+	2.主服务器到接到从服务器发送过来的同步消息，把主服务器数据进行持久化，
+	rdb文件，把rdb文件发送从服务器，从服务器拿到rdb进行解读。
+	3.每次主服务进行写操作之后，和从服务器进行数据同步。
