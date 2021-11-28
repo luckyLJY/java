@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vuejs测试</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="(user, index) in users">
+           {{index=index+1}}: {{user.name}}-{{user.age}}
+        </li>
+    </ul>
+    <hr>
+    <ul>
+        <li v-for="(value, key, index) in person">
+            {{key}}--{{value}}---{{index}}
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+  var app = new Vue({
+    el:"#app",
+   data:{
+    users:[
+        {"name":"a","age":"12"},
+        {"name":"b","age":"13"},
+        {"name":"c","age":"14"},
+    ],
+       person:{"name":"张三","age":"24"}
+   }
+  });
+</script>
+</body>
+</html>

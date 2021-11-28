@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vuejs测试</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="show=!show">点击</button>
+    <h2 v-if="show">
+        hello VueJS.
+    </h2>
+    <hr>
+    <ul>
+        <li v-for="(user, index) in users" v-if="user.age=='12'" style="background-color: deeppink">
+           {{index=index+1}}: {{user.name}}-{{user.age}}
+        </li>
+        <li v-else style="background-color: blue">
+            {{index=index+1}}: {{user.name}}-{{user.age}}
+        </li>
+    </ul>
+    <h2 v-show="show">
+        hello VueJS1.
+    </h2>
+</div>
+<script type="text/javascript">
+  var app = new Vue({
+    el:"#app",
+   data:{
+        show:true,
+        users:[
+            {"name":"a","age":"12"},
+            {"name":"b","age":"13"},
+            {"name":"c","age":"14"},
+        ],
+
+   }
+  });
+</script>
+</body>
+</html>
