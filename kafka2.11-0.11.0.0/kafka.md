@@ -329,3 +329,93 @@ kafka-0.10.1.X版本之前: auto.offset.reset 的值为smallest,和,largest.(off
 
 kafka-0.10.1.X版本之后: auto.offset.reset 的值更改为:earliest,latest,和none (offest保存在kafka的一个特殊的topic名为:__consumer_offsets里面)
 
+## 命令
+
+### 主题
+
+#### 查看主题
+
+```shell
+kafka-topics.sh --zookeeper ip:port --list
+```
+
+#### 新建主题:test1
+
+```shell
+kafka-topics.sh --zookeeper ip:port --create --replication-factor 2 --partitions 2 --topic test1
+```
+
+#### 查看主题详情
+
+```shell
+kafka-topics.sh --zookeeper ip:port --describe topic tes1
+```
+
+
+
+### 生产者
+
+#### 生产者：test1
+
+```shell
+kafka-console-producer.sh --broker--list ip:port --topic test1
+```
+
+### 消费者
+
+### 消费消息
+
+#### 从头消费
+
+```shell
+kafka-console-consumer.sh --topic test1 --bootstrap-server ip:port --from-beginning
+```
+
+
+
+#### 消费者组
+
+##### 指定消费者组为group1消费-主题为test1的消息
+
+```shell
+kafka-console-consumer.sh --topic test1 --bootstrap-server ip:port --group group1
+```
+
+##### 查看kafka消费者组
+
+```shell
+kafka-consumer-groups.sh --bootstrap-server ip:port --list
+```
+
+##### 查看某个消费组的消费情况
+
+```shell
+kafka-console-groups.sh --bootstrap-server ip:port --describe --group group1
+```
+
+##### 消费消费者组的消息
+
+```shell
+kafka-consumer-groups.sh --bootstrap-server ip:port --describe -group group1
+```
+
+### 分区
+
+#### 添加分区
+
+```shell
+kafka-topic.sh --zookeeper ip:port --alter --paritions 6 --topic test1
+```
+
+#### 查看不同分区(主题（I)的offsets
+
+```shell
+kafka-run-class.sh kafka-tools.GetOffsetShell --broker-list ip:port --topic test --time -1
+```
+
+#### 修改kafka的偏移量（增加积压100000）
+
+```shell
+kafka-consumer-groups.sh --bootstrap-server ip:port -group group1 --topic test1 --rest-offsets --shift-by -100000 --execute
+```
+
