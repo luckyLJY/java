@@ -27,13 +27,21 @@ POST index/_search
 #### es查询多个字段
 
 ```sql
-select value1,value2 from index	
+select value1,value2 from index	where datetime >=now
 ```
 
 ```
 POST index/_search?
 {
-	"_source":[_value1,value2]
+	"_source":[_value1,value2],
+	"query":{
+		"range":{
+			"datatime":{
+				"gte":now,
+				"format":"ddMMyyyy"
+			}
+		}
+	}
 }
 ```
 

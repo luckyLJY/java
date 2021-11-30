@@ -1,0 +1,156 @@
+实体类：A--B：1对1
+    A:aStream
+    B:bStream
+    Result:resultStream
+a流和b流合并
+    方法一：使用状态
+         resultStream = aStream.keyBy(a::getKey)
+         .connect(bStream.keyBy(b::getKey))
+         .process(new KeyMatchCoFunction())
+
+         public class KeyMatchCoFunction extend CoProcessFunction<Result,A,B>{
+            private ValueState<A> aState;//保存A的状态
+            private ValueState<B> bState;//保存B的状态
+             ValueState<Long> Timestate = null;//延时
+
+            @Override
+            open(){
+                aState =getRuntimeContext().getState(new ValueStateDescriptor<A>)("a",A.class);
+                bState =getRuntimeContext().getState(new ValueStateDescriptor<B>)("a",B.class);
+             ValueStateDescriptor<Long> timeState = new ValueStateDescriptor<>("timeState", Long.class);
+                Timestate = getRuntimeContext().getState(timeState);
+
+            }
+
+            @Override
+            processElement1(A a, Context context, Collector<Result> collector){
+                /*
+                1.判断B数据是否来了
+                2.B数据来了：返回数据，清空
+                3.B数据没来，更新B状态，设置延时
+                */
+                B b = bState.value();
+                if(b != null){
+                    collector.collect(new Result());
+                    bState.clear();
+                    context.timerService().deleteProcessingTimerTimer(Timestate.value());
+                    Timestate.clear();
+                }else{
+                    aState.update(a);
+                    long l = context.timerService().currentProcessingTime();
+                    Timestate.update(l+20000l);
+                    //注册触发器
+                    context.timerService().registerProcessingTimer(Timestate.value())
+                }
+            }
+
+
+            @Override
+            processElement1(A a, Context context, Collector<Result> collector){
+                /*
+                1.判断B数据是否来了
+                2.B数据来了：返回数据，清空
+                3.B数据没来，更新B状态，设置延时
+                */
+                A a = aState.value();
+                if(a != null){
+                    collector.collect(new Result());
+                    aState.clear();
+                    context.timerService().deleteProcessingTimerTimer(Timestate.value());
+                    Timestate.clear();
+                }else{
+                    bState.update(b);
+                    long l = context.timerService().currentProcessingTime();
+                    Timestate.update(l+20000l);
+                    //注册触发器
+                    context.timerService().registerProcessingTimer(Timestate.value())
+                }
+            }
+
+            @Override
+            public void onTimer(){
+                ValueState<A> aValue = aState.value();
+                ValueState<B> bValue = bState.value();
+                if(aValue!=null){
+                    context.output(first,aValue);//侧输出到first流中
+                }
+                if(bValue!=null){
+                    context.output(second,bValue);//侧输出到second流中
+                }
+
+            }
+
+            @Override
+            public void close(){
+                aState.clear();
+                bState.clear();
+         }
+    方法二：
+        resultStream = aStream.coGroup(bStream)
+                        .where(data1->data1.getKey())
+                        .equalTo(data2->data2.getKey())
+                        .window(SlidingProcessingTimeTimeWindows.of(Time.second(10),Time.second(2)))
+                        .apply(new RichCoGroupFunction(){逻辑})
+    方法三：
+        两个相同数据类型的流采用union
+
+侧输出流标签
+OutputTag<JoinResult> first = new OutputTag<JoinResult>("first"){};
+
+流的拆分
+    DataStream<Integer> input = ...;
+
+    final OutputTag<String> outputTag = new OutputTag<String>("side-output"){};
+
+    SingleOutputStreamOperator<Integer> mainDataStream = input
+      .process(new ProcessFunction<Integer, Integer>() {
+
+          @Override
+          public void processElement(
+              Integer value,
+              Context ctx,
+              Collector<Integer> out) throws Exception {
+            // 将数据发送到常规输出中
+            out.collect(value);
+
+            // 将数据发送到侧输出中
+            ctx.output(outputTag, "sideout-" + String.valueOf(value));
+          }
+        });
+获取侧输出流
+    final OutputTag<String> outputTag = new OutputTag<String>("side-output"){};
+
+    SingleOutputStreamOperator<Integer> mainDataStream = ...;
+
+    DataStream<String> sideOutputStream = mainDataStream.getSideOutput(outputTag);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
