@@ -38,7 +38,7 @@ env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
 env.getCheckpointConfig().setMinPauseBetweenCheckpoints(30000);
 
 // checkpoints have to complete within one minute, or are discarded
-// checkpoint 超时时间（默认 600 s）
+// checkpoint 超时时间（默认 60 s）
 env.getCheckpointConfig().setCheckpointTimeout(600000);
 
 // allow only one checkpoint to be in progress at the same time
