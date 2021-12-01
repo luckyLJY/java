@@ -65,9 +65,10 @@ public class StateTest4_FaultTolerance {
         //1.状态后端配置 可以在配置文件中配置
         env.setStateBackend(new MemoryStateBackend());
         env.setStateBackend(new FsStateBackend(""));
-
-        //env.setStateBackend(new FsStateBackend("hdfs://namenode:40010/flink/checkpoints"));
-        env.setStateBackend(new RocksDBStateBackend(""));
+        //env.setStateBackend(new FsStateBackend("hdfs:///namenode/flink/checkpoints"));
+        
+		//env.setStateBackend(new RocksDBStateBackend("hdfs:///namenode/flink/checkpoints",ture));存储到rockDB中
+		env.setStateBackend(new RocksDBStateBackend(""));
 
         //2.检查点设置参数：时间、模式：精确一次，至少一次
         env.enableCheckpointing(300);

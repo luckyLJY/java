@@ -6,10 +6,7 @@ package com.javapro.map;/**
  */
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @ClassName MapTrav
@@ -33,7 +30,9 @@ public class MapTrav {
          */
         /*BigDecimal A =new BigDecimal("10.0");
         System.out.println(A.doubleValue()==10.0);*/
-        System.out.println("202111250841".substring(0,8));
+        /*
+        System.out.println("202111250841".substring(0,8));*/
+
     }
 
     /**
