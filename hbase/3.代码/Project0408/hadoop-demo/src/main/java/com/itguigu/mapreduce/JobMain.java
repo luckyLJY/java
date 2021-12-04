@@ -30,14 +30,20 @@ public class JobMain extends Configured implements Tool {
         job.setJarByClass(JobMain.class);
         //1. 读入输入文件解析成key，value对
         job.setInputFormatClass(TextInputFormat.class);
-        TextInputFormat.addInputPath(job,new Path("hdfs://192.168.75.100:8020/wordcount"));
+        TextInputFormat.addInputPath(job,new Path("hdfs://node01:8020/wordcount"));
 
         //2. 设置我们的mapper类
         job.setMapperClass(WordCountMapper.class);
         //设置我们的map阶段完成之后的输出类型
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(LongWritable.class);
-        //第三步，第四步，第五步，第六步，省略
+        //第三步，第四步，第五步，第六步，省略:分区、排序、规约、分组
+
+        //设置分区类
+        job.setPartitionerClass(MyPartitioner.class);
+
+        //设置reduce的个数
+        job.setNumReduceTasks(2);
 
         //第七步：设置我们的reduce类
         job.setReducerClass(WordCountReducer.class);
@@ -48,7 +54,7 @@ public class JobMain extends Configured implements Tool {
         //第八步：设置输出类以及输出路径
         job.setOutputFormatClass(TextOutputFormat.class);
         TextOutputFormat.setOutputPath(job,
-                new Path("hdfs://192.168.75.100:8020/wordcount_out"));
+                new Path("hdfs://node01:8020/wordcount_out"));
         boolean b = job.waitForCompletion(true);
         return b?0:1;
 

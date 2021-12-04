@@ -32,7 +32,7 @@ public class MapTrav {
         System.out.println(A.doubleValue()==10.0);*/
         /*
         System.out.println("202111250841".substring(0,8));*/
-
+        
     }
 
     /**
