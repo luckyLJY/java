@@ -7,9 +7,10 @@ package com.itguigu.mapreduce_sort;/**
 
 import com.itguigu.mapreduce_sort.bean.PairWritable;
 import org.apache.hadoop.io.NullWritable;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
-import javax.xml.soap.Text;
+
 import java.io.IOException;
 
 /**
