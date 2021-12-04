@@ -1,8 +1,0 @@
-com\itguigu\mapreduce\WordCountReducer.class
-com\itguigu\mapreduce\WordCountMapper.class
-com\itguigu\mapreduce\MyPartitioner.class
-com\itguigu\mapreduce_sort\bean\PairWritable.class
-com\itguigu\mapreduce\JobMain.class
-com\itguigu\mapreduce_sort\SortMapper.class
-com\itguigu\mapreduce_sort\JobMain.class
-com\itguigu\mapreduce_sort\SortReducer.class
