@@ -163,6 +163,10 @@ public class Opreator {
         IntPredicate isDivisible = index -> number % index ==0;
         return number > 1 && IntStream.range(2, number - 1).noneMatch(isDivisible);
     }
+
+    /**
+     * TODO:
+     */
 }
 class Person{
     String name;
