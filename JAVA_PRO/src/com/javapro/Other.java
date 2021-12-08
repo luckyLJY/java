@@ -6,9 +6,7 @@ package com.javapro;/**
  */
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * @ClassName Other
@@ -18,10 +16,21 @@ import java.util.List;
  */
 public class Other {
     public static void main(String[] args) {
-        BigDecimal a =new BigDecimal("1");
+        /*BigDecimal a =new BigDecimal("1");
         BigDecimal b =new BigDecimal("2");
         List<BigDecimal> names = Arrays.asList(a,b);
         names.sort(Collections.reverseOrder());
-        System.out.println(names);
+        System.out.println(names);*/
+
+        List<Map<String,String>> inputList = new ArrayList<Map<String,String>>();
+        Map<String,String> map1 = new HashMap<>();
+        map1.put("a","1");
+        Map<String,String> map2 = new HashMap<>();
+        map2.put("b"," ");
+
+        inputList.add(map1);
+        inputList.add(map2);
+
+        System.out.printf("List", inputList);
     }
 }

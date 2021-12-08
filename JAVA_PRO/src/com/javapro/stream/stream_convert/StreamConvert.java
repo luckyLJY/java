@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -85,4 +86,12 @@ public class StreamConvert {
         final String joinedWords = words.collect(Collectors.joining(" "));
         System.out.println(joinedWords);
     }
+
+    //TODO:string转换为TreeSet
+    public static void string2TreeSet(){
+        Stream<String> words = Stream.of("All", "men", "are", "created", "equal");
+        TreeSet<String> treeSet = words.collect(Collectors.toCollection(TreeSet::new));
+        treeSet.forEach(n -> System.out.println(n));
+    }
+
 }

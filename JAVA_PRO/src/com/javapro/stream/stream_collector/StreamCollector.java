@@ -27,6 +27,7 @@ public class StreamCollector {
         //TODO:group按人员年龄列出的人员列表。
         //groupbyAge();
 
+
         //TODO:使用收集器创建从整数到字符串的人物列表的映射
         //figMapper();
 
