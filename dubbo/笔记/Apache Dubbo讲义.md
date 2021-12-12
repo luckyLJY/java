@@ -748,3 +748,4 @@ public class HelloServiceImpl implements HelloService {
 此处也是必须要修改的，否则会导致发布的服务接口为SpringProxy，而不是HelloService接口，如下：
 
 ![16](16.png)
+
