@@ -1,0 +1,13 @@
+com\itguigu\mapreduce\WordCountMapper.class
+com\itguigu\mapreduce\MyPartitioner.class
+com\itguigu\mapreduce_sort\SortMapper.class
+com\itguigu\mapreduce_sort\SortReducer$Counter.class
+com\itguigu\combiner\mapreduce\WordCountMapper.class
+com\itguigu\mapreduce_sort\SortReducer.class
+com\itguigu\mapreduce\WordCountReducer.class
+com\itguigu\combiner\mapreduce\MyContiner.class
+com\itguigu\mapreduce_sort\bean\PairWritable.class
+com\itguigu\combiner\mapreduce\JobMain.class
+com\itguigu\mapreduce\JobMain.class
+com\itguigu\combiner\mapreduce\WordCountReducer.class
+com\itguigu\mapreduce_sort\JobMain.class

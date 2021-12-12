@@ -6,6 +6,7 @@ package com.itguigu.mapreduce_sort;/**
  */
 
 import com.itguigu.mapreduce_sort.bean.PairWritable;
+import org.apache.hadoop.fs.shell.Count;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -29,6 +30,12 @@ import java.io.IOException;
  */
 public class SortReducer extends Reducer<PairWritable, Text,PairWritable, NullWritable> {
 
+
+
+    //@Version2.1   @Date: 2021-12-12 计数器第二种方式：枚举类型
+   public static enum Counter{
+       REDUCE_INPUT_KEY_RECORDS, REDUCE_INPUT_VALUE_RECORDS,
+    }
     /**
      *
      * @param key
@@ -42,7 +49,10 @@ public class SortReducer extends Reducer<PairWritable, Text,PairWritable, NullWr
      */
     @Override
     protected void reduce(PairWritable key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
+
+        context.getCounter(Counter.REDUCE_INPUT_KEY_RECORDS).increment(1l);
         for (Text value : values) {
+            context.getCounter(Counter.REDUCE_INPUT_VALUE_RECORDS).increment(1l);
             context.write(key,NullWritable.get());
         }
     }
