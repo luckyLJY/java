@@ -43,16 +43,6 @@ public class Other {
         inputList.add(map1);
         inputList.add(map2);
 
-        //input = "" || input =1
-
-/*
-        List<Map<String, String>> c = inputList.stream().filter(new Predicate<Map<String, String>>() {
-            @Override
-            public boolean test(Map<String, String> stringStringMap) {
-                return "".equals(a) || a.equals(stringStringMap.get("a")) || "".equals(b) || b.equals(stringStringMap.get("b"));
-            }
-        })
-*/
         List<Map<String, String>> c = inputList.stream().filter(
                 new Predicate<Map<String, String>>() {
                     //""  ==
