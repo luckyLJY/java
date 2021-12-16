@@ -1,4 +1,4 @@
-package cn.itcast.mapreduce_flowcount_partition;
+package com.itguigu.mapreduce_flowcount_sort_partitioner;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
@@ -11,7 +11,7 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 public class JobMain extends Configured  implements Tool {
-    @Override
+
     public int run(String[] strings) throws Exception {
         //创建一个任务对象
         Job job = Job.getInstance(super.getConf(), "mapreduce_flowcount_partition");

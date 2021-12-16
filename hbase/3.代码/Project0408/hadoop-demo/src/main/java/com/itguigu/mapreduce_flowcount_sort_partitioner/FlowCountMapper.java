@@ -1,4 +1,4 @@
-package cn.itcast.mapreduce_flowcount_partition;
+package com.itguigu.mapreduce_flowcount_sort_partitioner;
 
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;

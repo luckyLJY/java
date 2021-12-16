@@ -1,4 +1,4 @@
-package cn.itcast.mapreduce_flowcount_partition;
+package com.itguigu.mapreduce_flowcount_sort_partitioner;
 
 import org.apache.hadoop.io.Writable;
 
@@ -54,7 +54,7 @@ public class FlowBean  implements Writable {
                 "\t" + downCountFlow;
     }
 
-    @Override
+
     public void write(DataOutput dataOutput) throws IOException {
         dataOutput.writeInt(upFlow);
         dataOutput.writeInt(downFlow);
@@ -62,7 +62,7 @@ public class FlowBean  implements Writable {
         dataOutput.writeInt(downCountFlow);
     }
 
-    @Override
+
     public void readFields(DataInput dataInput) throws IOException {
         this.upFlow = dataInput.readInt();
         this.downFlow = dataInput.readInt();
