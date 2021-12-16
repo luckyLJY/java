@@ -1,9 +1,4 @@
-package com.itguigu.mapreduce_flowcount_sort_partitioner;/**
- * Project: Project0408
- * Package: com.itguigu.mapreduce_flowcount
- * Version: 1.0
- * Created by ljy on 2021-12-14 20:51
- */
+package cn.itcast.mapreduce_flowcount_partition;
 
 import org.apache.hadoop.io.Writable;
 
@@ -11,27 +6,12 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-/**
- * @ClassName FlowBean
- * @Author: ljy on 2021-12-14 20:51
- * @Version: 1.0
- * @Description:流量统计实体类
- */
 public class FlowBean  implements Writable {
-
-
     private Integer upFlow;
-    private Integer downFlow;
+    private Integer  downFlow;
     private Integer upCountFlow;
     private Integer downCountFlow;
 
-    public FlowBean(){}
-    public FlowBean(Integer upFlow, Integer downFlow, Integer upCountFlow, Integer downCountFlow) {
-        this.upFlow = upFlow;
-        this.downFlow = downFlow;
-        this.upCountFlow = upCountFlow;
-        this.downCountFlow = downCountFlow;
-    }
 
     public Integer getUpFlow() {
         return upFlow;
@@ -67,12 +47,14 @@ public class FlowBean  implements Writable {
 
     @Override
     public String toString() {
-        return upFlow +
+        return
+                upFlow +
                 "\t" + downFlow +
                 "\t" + upCountFlow +
                 "\t" + downCountFlow;
     }
 
+    @Override
     public void write(DataOutput dataOutput) throws IOException {
         dataOutput.writeInt(upFlow);
         dataOutput.writeInt(downFlow);
@@ -80,11 +62,11 @@ public class FlowBean  implements Writable {
         dataOutput.writeInt(downCountFlow);
     }
 
-    public void readFields(DataInput in) throws IOException {
-        this.upFlow = in.readInt();
-        this.downFlow = in.readInt();
-        this.upCountFlow = in.readInt();
-        this.downCountFlow = in.readInt();
-
+    @Override
+    public void readFields(DataInput dataInput) throws IOException {
+        this.upFlow = dataInput.readInt();
+        this.downFlow = dataInput.readInt();
+        this.upCountFlow = dataInput.readInt();
+        this.downCountFlow = dataInput.readInt();
     }
 }
