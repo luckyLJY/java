@@ -12,11 +12,13 @@ drop table table_name;
 #### case wher语法
 
 ```sql
-select 
+select  /*+parallel(32)*/  //多线程
   sum(case when substr(key_1,0,4)='0036' then curr_bal end) as orgm
 from 
     invm;
 ```
+
+
 
 ### idea
 
