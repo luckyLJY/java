@@ -37,3 +37,4 @@ docker push 私有仓库服务器IP:5000/centos:7
 #拉取镜像 
 docker pull 私有仓库服务器ip:5000/centos:7
 ```
+
