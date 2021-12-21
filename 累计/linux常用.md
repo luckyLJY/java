@@ -1,4 +1,4 @@
-#### 文件中有多少条数据
+### 文件中有多少条数据
 
 ```powershell
 cat a.tct | wc -l
@@ -189,3 +189,4 @@ vim FileName,cat >> FileName,touch FileName
 netstat -anp |grep [端口号] 查看端口占用
 nc -lk [端口号] 监听端口号
 ```
+
