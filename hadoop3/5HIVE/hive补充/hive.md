@@ -335,3 +335,86 @@ load data local inpath '/export/servers/hivedatas/course.csv' into table course_
  insert overwrite table course select * from course_common cluster by(c_id);
 ```
 
+## HIVE的非等值连接
+
+locate()函数进行功能转换。 
+
+
+locate(string substr, string str[, int pos]) 
+查找字符串str中的pos位置后字符串substr第一次出现的位置，若未找到，则返回0。
+
+```sql
+hive> select locate('a','abcd'), locate('b', 'abcd'), locate('f', 'abcd')
+结果:  1  2  0
+1
+2
+```
+
+
+
+```sql
+join模糊匹配 
+left join , right join , full join
+
+hive> select * from a left join b on 1=1 where locate(a.col,b.col)>0
+
+hive> select * from a   right join b on 1=1 where locate(a.col,b.col)>0
+
+hive> select * from a full join b  where locate(a.col,b.col)>0
+```
+
+除了将locate()直接写在where条件里，也可以使用row_number()来搭配使用。
+
+```sql
+select col
+from(
+    select 
+        if(locate(a.col, b.col)>0, b.col, a.col) as col, 
+        row_number() over(partition by a.col order by locate(a.col, b.col) desc) as rn
+    from a 
+    left join b on 1=1
+) as a
+where rn=1
+```
+
+## HIVE开窗
+
+distribute by是控制在map端如何拆分数据给reduce端的。hive会根据distribute by后面列，对应reduce的个数进行分发，默认是采用hash算法。sort by为每个reduce产生一个排序文件。在有些情况下，你需要控制某个特定行应该到哪个reducer，这通常是为了进行后续的聚集操作。distribute by刚好可以做这件事。因此，distribute by经常和sort by配合使用。
+注：Distribute by和sort by的使用场景
+
+1. Map输出的文件大小不均。
+2.Reduce输出文件大小不均。
+3.小文件过多。
+4.文件超大。
+两种开窗方式区别
+patition by是按照一个一个reduce去处理数据的，所以要使用全局排序order by
+distribute by是按照多个reduce去处理数据的，所以对应的排序是局部排序sort by
+窗口大小: hive 的窗口大小默认是从起始行到当前行.
+
+
+
+MAP-SIDE JOIN和REDUCE-SIDE JOIN的区别
+map-side join
+hive在那些普通的join操作中, 每个on子句都用到了a.id=b.id作为join的连接键.
+当多个表进行join链接时, 如果每个on子句使用相同的连接键的话, 那么只会产生一个mapreduce job.
+如果所有表中, 有一张表是小表, 那么可以在最大的表通过mapper的时候将小表完全放到内存中, hive可以在map端执行链接过程, 也就是map-side join. 因为hive可以和内存中的小表进行逐一匹配, 省略了reduce过程.
+设置属性:
+hive.auto.convert.join=true
+hive.majoin.smalltable.filesize=25000000(25M)
+局限: 要有一份小到足够加载到内存里的表
+优化:
+使用内存服务器, 扩大节点的内存空间. 针对map join, 可以报一份数据到专门的内存服务器, 在map()方法中, 对每一个输入, 根据key到内存服务器中获取数据进行连接.
+reduce-side join
+map端按照链接字段进行hash, reduce端完成连接操作. 在map阶段, 把关键字作为key输出, 并在value中标记出数据是来自表1还是表2. 经过shuffle阶段将两表数据按照key自然分组, 然后在reduce阶段, 判断每个value是来自表1还是表2, 再合并数据就可以了
+适合两个大表的连接操作
+问题:
+map阶段没有数据瘦身, shuffle的网络传输和排序性能会很低.
+reduce端对两个集合做乘积计算, 消耗内存很大, 容易造成oom.
+优化:
+使用BloomFilter过滤空连接的数据
+对其中一份数据在内存中建立BloomFilter, 另外一份数据在连接之前, 使用BloomFilter判断它的key是否存在, 如果不存在, 那么这个记录是空连接, 可以忽略.
+10. MAP-SIDE JOIN加载到内存中的表在内存中以什么形式存在
+被加载到内存中的表估计是以jvm对象存储的, 因为在一本讲spark内核的书中在讲spark sql 的优越性能的时候, 讲到spark sql性能的提高, 有一个很大的优化是进行了内存列存储, 而不是传统的jvm对象存储. 因为使用原生的jvm对象存储, 每个对象都要增加十几个字节的额外开销. 另外使用这种方式, 每个数据记录产生一个jvm对象, 如果是大小200b的数据记录,32 GB的对战讲产生1.6亿个对象, 对gc来说也是很大的压力.
+而使用了内存列存储, 就是将所有元神数据欸行的列采用原生数组来存储, 将hive
+支持的复杂数据类型先序列化后并接成一个字节数组来存储. 这样每个列创建一个jvm对象, 可以快速的gc和紧凑的数据存储, 还可以使用低cpu开销的高效压缩方法来降低内存开销.
+对于分析查询中频繁使用的聚合特定列, 性能会得到很大的提高, 因为这些列数据放在一起, 更容易读入内存进行计算
