@@ -16,14 +16,20 @@ import org.elasticsearch.common.unit.Fuzziness;
 import org.elasticsearch.index.query.*;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.BucketOrder;
+import org.elasticsearch.search.aggregations.bucket.terms.Terms;
+import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
 import org.elasticsearch.search.aggregations.metrics.MaxAggregationBuilder;
+import org.elasticsearch.search.aggregations.metrics.Sum;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 
 import javax.management.modelmbean.DescriptorSupport;
+import java.util.Iterator;
 
 /**
  * @ClassName Doc_Query
@@ -261,5 +267,35 @@ public class Doc_Query {
             System.out.println(hit.getSourceAsString());
         }
         esClient.close();
+        //分组
+        /*
+        20211227  新增分组查询->排序
+         */
+       /* SearchRequest request = new SearchRequest();
+        request.indices("user");
+
+        SearchSourceBuilder builder = new SearchSourceBuilder();
+        builder.query(QueryBuilders.termQuery("post_date","20210203"));
+
+        TermsAggregationBuilder termsAggregationBuilder = AggregationBuilders.terms("acct_nos").field("acct_no.keyword");
+        termsAggregationBuilder.subAggregation(AggregationBuilders.sum("sum_amt_out").field("amt_in"))
+                .order(BucketOrder.aggregation("sum_amt_out",false)).size(10);
+
+        builder.aggregation(termsAggregationBuilder);
+
+        request.source(builder);
+        SearchResponse response = esClient.search(request, RequestOptions.DEFAULT);
+
+        Terms acct_nos = response.getAggregations().get("acct_nos");
+
+        Iterator<? extends Terms.Bucket> iterator = acct_nos.getBuckets().iterator();
+        while (iterator.hasNext()){
+            Terms.Bucket next = iterator.next();
+            Sum sum_amt_out = (Sum) next.getAggregations().getAsMap().get("sum_amt_out");
+            System.out.println(next.getAggregations()+","+sum_amt_out.getValueAsString());
+        }
+        esClient.close();
+*/
+
     }
 }
