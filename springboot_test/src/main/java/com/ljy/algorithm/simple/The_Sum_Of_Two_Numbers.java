@@ -1,4 +1,4 @@
-package com.ljy.algorithm;/**
+package com.ljy.algorithm.simple;/**
  * Project: springboot_test
  * Package: com.ljy.algorithm.the_sum_of_two_numbers
  * Version: 1.0

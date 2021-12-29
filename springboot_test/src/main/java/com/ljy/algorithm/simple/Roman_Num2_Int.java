@@ -1,4 +1,4 @@
-package com.ljy.algorithm;/**
+package com.ljy.algorithm.simple;/**
  * Project: springboot_test
  * Package: com.ljy.algorithm
  * Version: 1.0
