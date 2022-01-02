@@ -13,6 +13,7 @@ package com.itguigu.test
  * @Version: 1.0
  * @Description:
  * @Version:3.0子任务
+ * 任务
  */
 class SubTask extends Serializable {
   var datas:List[Int]=_
