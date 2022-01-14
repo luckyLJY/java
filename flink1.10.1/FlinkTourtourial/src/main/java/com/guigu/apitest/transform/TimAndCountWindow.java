@@ -72,7 +72,8 @@ class TimeTriger extends Trigger<Long, TimeWindow>{
          }
     }
 
-    @Override
+    
+   /* @Override
     public TriggerResult onProcessingTime(long time, TimeWindow window, TriggerContext ctx) throws Exception {
         if(time >= window.getEnd()){
            return TriggerResult.CONTINUE;
@@ -90,7 +91,7 @@ class TimeTriger extends Trigger<Long, TimeWindow>{
             clear(window,ctx);
             return TriggerResult.FIRE_AND_PURGE;//触发计算并清除数据
         }
-    }
+    }*/
 
     @Override
     public void clear(TimeWindow window, TriggerContext ctx) throws Exception {
