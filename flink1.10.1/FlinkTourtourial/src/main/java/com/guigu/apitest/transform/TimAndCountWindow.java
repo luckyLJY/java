@@ -72,7 +72,7 @@ class TimeTriger extends Trigger<Long, TimeWindow>{
          }
     }
 
-    
+
    /* @Override
     public TriggerResult onProcessingTime(long time, TimeWindow window, TriggerContext ctx) throws Exception {
         if(time >= window.getEnd()){
