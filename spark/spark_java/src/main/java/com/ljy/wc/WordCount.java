@@ -6,12 +6,14 @@ package com.ljy.wc;/**
  */
 
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.MapFunction;
+import scala.Int;
 import scala.Tuple2;
 
 
@@ -38,21 +40,9 @@ public class WordCount {
                 return it;
             }
         });
-        //转换数据结构
-        JavaRDD<Tuple2<String, Integer>> word2OneRDD = wordJavaRDD.map(new Function<String, Tuple2<String, Integer>>() {
-            @Override
-            public Tuple2<String, Integer> call(String s) throws Exception {
-                return new Tuple2<>(s, 1);
-            }
-        });
 
-        //分组组合
-        Tuple2<String, Integer> word2Count = word2OneRDD.reduce(new Function2<Tuple2<String, Integer>, Tuple2<String, Integer>, Tuple2<String, Integer>>() {
-            @Override
-            public Tuple2<String, Integer> call(Tuple2<String, Integer> stringIntegerTuple2, Tuple2<String, Integer> stringIntegerTuple22) throws Exception {
-                return new Tuple2<>(stringIntegerTuple22._1, stringIntegerTuple2._2 + stringIntegerTuple22._2);
-            }
-        });
+
+
 
         //集合采集到内存
         System.out.printf("1", word2Count);

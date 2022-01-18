@@ -5,34 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3891d6f3-3cd6-4a26-bdf7-1d9d71c3aa17" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../hadoop3/07-Azkaban.Sqoop/日志流量分析/day07_weblogx/day09_weblogx.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input/word.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ljy/wc/WordCount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../sparkdemo/input/word.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../hadoop3/07-Azkaban.Sqoop/讲义/笔记.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../hadoop3/07-Azkaban.Sqoop/讲义/笔记.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../hadoop3/5HIVE/hive补充/hive.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../hadoop3/5HIVE/hive补充/hive.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sparkdemo/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sparkdemo/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sparkdemo/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sparkdemo/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sparkdemo/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/wc/WordCount.scala" beforeDir="false" afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/wc/WordCount.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sparkdemo/sparkcore/target/classes/com/itguigu/wc/WordCount$.class" beforeDir="false" afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/target/classes/com/itguigu/wc/WordCount$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../笔记/1.笔记/01_尚硅谷大数据技术之SparkCore.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../笔记/1.笔记/02_尚硅谷大数据技术之SparkSql.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../笔记/1.笔记/03_尚硅谷大数据技术之SparkStreaming.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../笔记/1.笔记/04_尚硅谷大数据技术之Spark内核.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../笔记/1.笔记/05_尚硅谷大数据技术之Spark优化.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../笔记/1.笔记/06-课程内容讲解.bmpr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../笔记/1.笔记/07-尚硅谷大数据技术之Spark源码.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../笔记/1.笔记/08-源码讲解.bmpr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../累计/linux常用软件安装及问题处理.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../累计/linux常用软件安装及问题处理.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../累计/服务启动及应用部署文档.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../累计/服务启动及应用部署文档.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/data/agent.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/data/apache.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/data/user_visit_action.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/input/1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/builder/RDD创建.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/builder/Spark01_RDD_Memory.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/builder/Spark01_RDD_Memory_Par.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/builder/Spark02_RDD_File.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/builder/Spark02_RDD_File1.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/builder/Spark02_RDD_File_Par.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/builder/Spark02_RDD_File_Par1.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/builder/Spark03_RDD_File_Par2.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/operator/transform/Spark01_RDD_Operator_Transform.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/operator/transform/Spark01_RDD_Operator_Transform_Par.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/operator/transform/Spark01_RDD_Operator_Transform_Part.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/operator/transform/Spark01_RDD_Operator_Transform_Test.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/operator/transform/Spark02_RDD_Operator_Transform.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/operator/transform/Spark02_RDD_Operator_Transform_Test.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/operator/transform/Spark03_RDD_Operator_Transform.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/operator/transform/Spark03_RDD_Operator_Transform1.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/operator/transform/Spark04_RDD_Operator_Transform.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/operator/transform/Spark04_RDD_Operator_Transform1.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/rdd/operator/transform/Spark04_RDD_Operator_Transform2.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/test/Driver.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/test/Executor.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/test/Executor1.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/test/SubTask.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/test/Task.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/java/com/itguigu/wc/Spark03_WordCount.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/src/main/resources/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ljy/wc/WordCount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ljy/wc/WordCount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sparkdemo/sparkcore/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sparkdemo/sparkcore/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../springboot_test/src/main/java/com/ljy/algorithm/difficult/LargestRectangleArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../springboot_test/src/main/java/com/ljy/algorithm/difficult/LargestRectangleArea.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,17 +99,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.WordCount" />
@@ -118,6 +114,7 @@
       <option name="presentableId" value="Default" />
       <updated>1640228312335</updated>
       <workItem from="1640228313587" duration="9312000" />
+      <workItem from="1640860117618" duration="2979000" />
     </task>
     <servers />
   </component>
@@ -134,5 +131,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
