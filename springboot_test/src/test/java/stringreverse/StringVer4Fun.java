@@ -8,6 +8,14 @@ package stringreverse;/**
 
 import org.junit.Test;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 /**
  * @ClassName StringVer4Fun
  * @Author: ljy on 2022-1-17 10:04
@@ -75,5 +83,24 @@ public class StringVer4Fun {
         String right = s.substring(length/2 ,length);
         String afterReverse = reverseRecursive(right)+reverseRecursive(left);//此处是递归的方法调用
         return afterReverse;
+    }
+
+    /**
+     * File写文件
+     * @throws IOException
+     */
+    @Test
+    public void test1() throws IOException {
+        File file = new File("F:\\a.txt");
+        FileWriter fileWriter = new FileWriter(file);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write("a");
+
+        bufferedWriter.flush();
+
+        bufferedWriter.close();
+        fileWriter.close();
+
+        System.out.println(file.length());
     }
 }
