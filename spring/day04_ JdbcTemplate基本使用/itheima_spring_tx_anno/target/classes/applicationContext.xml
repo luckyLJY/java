@@ -31,6 +31,6 @@
 
 
     <!--事物的注解驱动-->
-    <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>

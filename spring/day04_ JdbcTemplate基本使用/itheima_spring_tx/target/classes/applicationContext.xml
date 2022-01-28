@@ -36,14 +36,20 @@
 
     <!--通知  事务的增强-->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!--设置事务的属性信息的-->
         <tx:attributes>
+            <tx:method name="transfer" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="save" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="findAll" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="update*" isolation="REPEATABLE_READ" propagation="REQUIRED" read-only="true"/>
             <tx:method name="*"/>
         </tx:attributes>
     </tx:advice>
 
     <!--配置事务的aop织入-->
-    <!--<aop:config>
-        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.itheima.service.impl.*.*(..))"></aop:advisor>
-    </aop:config>-->
+    <aop:config>
+        <aop:pointcut id="txPointcut" expression="execution(* com.itheima.service.impl.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+    </aop:config>
 
 </beans>

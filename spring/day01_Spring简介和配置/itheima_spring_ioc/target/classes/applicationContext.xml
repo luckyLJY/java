@@ -58,6 +58,10 @@
         <constructor-arg name="userDao" ref="userDao"></constructor-arg>
     </bean>
 
+    <bean id="userService2" class="com.itheima.service.impl.UserServiceImpl">
+        <constructor-arg name="userDao" ref="userDao"></constructor-arg>
+    </bean>
+
     <!--<import resource="applicationContext-user.xml"/>
     <import resource="applicationContext-product.xml"/>-->
 

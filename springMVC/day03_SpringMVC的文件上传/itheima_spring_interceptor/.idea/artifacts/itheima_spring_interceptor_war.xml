@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="itheima_spring_interceptor:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>itheima_spring_interceptor</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="itheima_spring_interceptor-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="itheima_spring_interceptor:war exploded" />
+    </root>
+  </artifact>
+</component>
