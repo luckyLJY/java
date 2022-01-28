@@ -7,9 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="itstack-demo-design-2-00" />
+        <module name="itstack-demo-design-3-02" />
+        <module name="itstack-demo-design-4-02" />
         <module name="itstack-demo-design-2-02" />
         <module name="itstack-demo-design-1-02" />
         <module name="itstack-demo-design-1-00" />
+        <module name="itstack-demo-design-3-00" />
+        <module name="itstack-demo-design-4-00" />
       </profile>
     </annotationProcessing>
   </component>
