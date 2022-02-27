@@ -20,6 +20,8 @@
         <module>itstack-demo-design-5-00</module>
         <module>itstack-demo-design-6-00</module>
         <module>itstack-demo-design-6-02</module>
+        <module>itstack-demo-design-7-01</module>
+        <module>itstack-demo-design-7-02</module>
     </modules>
 
     <properties>
