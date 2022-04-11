@@ -16,6 +16,7 @@ import org.apache.spark.{SparkConf, SparkContext}
  * @Version: 1.0
  * @Description:
  * 分区转换数据类型
+ * Int=>Array
  */
 object Spark05_RDD_Operator_Transform {
   def main(args: Array[String]): Unit = {

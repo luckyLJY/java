@@ -22,6 +22,12 @@ object Spark09_RDD_Operator_Transform {
     val sparkConf: SparkConf = new SparkConf().setMaster("local[*]").setAppName("disctinctRDD")
     val sc = new SparkContext(sparkConf)
 
+    //map(x=>(x,null)).reduceByKey((x,_)=>x,numPartitions).map(_._1)
+    //(1,null)(3,null),(3,null),(2,null),(4,null)
+    //(null,null) =>null
+    //(3,null) =>3
+
+    //scala的distinct是使用了hashset
     val rdd: RDD[Int] = sc.makeRDD(List(1, 3, 3, 2, 4))
     val rdd1: RDD[Int] = rdd.distinct()
     rdd1.collect().foreach(println)
