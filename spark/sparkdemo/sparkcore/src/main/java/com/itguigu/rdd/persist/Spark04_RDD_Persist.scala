@@ -21,6 +21,7 @@ object Spark04_RDD_Persist {
   def main(args: Array[String]): Unit = {
     val sparkConf: SparkConf = new SparkConf().setMaster("local[*]").setAppName("Persist")
     val sc = new SparkContext(sparkConf)
+    sc.setCheckpointDir("cp");
 
     val list = List("Hello Scala", "Hello Spark")
 
@@ -33,7 +34,9 @@ object Spark04_RDD_Persist {
     })
 
     /**
-     * checkpoint
+     * checkpoint需要落盘，需要指定检查点保存路径
+     * 检查点路径保存的文件，当作业执行完毕后，不会删除
+     * 一般保存路径都是在分布式存储系统：HDFS
      */
     mapRDD.checkpoint();
 

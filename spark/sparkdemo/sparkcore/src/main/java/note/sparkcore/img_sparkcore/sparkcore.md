@@ -180,8 +180,25 @@ rdd算子中传递的函数是包含闭包操作的，会进行检测功能
 ![](./img_sparkcore/实现持久化.PNG)
 Spark03_RDD_Persist
 ## RDD CheckPoint检查点
+1. 代码Spark04_RDD_Persist
 
-
+## cache与persist的区别
+1. 代码 Spark05_RDD_Persist  和 Spark06_RDD_Persist
+2. 数据安全性和血缘依赖
+*************************************
+## 5.1.4.9 RDD分区器
+#### 代码
+com/itguigu/rdd/part/Spark01_RDD_Part.scala
+#### 内容
+分区器：hash分区器、range分区器、自定义分区器
+## 5.1.4.10 RDD文件读取与保持
+#### 代码
+com/itguigu/rdd/io/Spark01_RDD_IO_Save.scala  
+com/itguigu/rdd/io/Spark01_RDD_IO_Load.scala
+#### 内容
+文件格式分为:text文件、csv文件、sequence文件、object文件
+文件系统分为：本地文件系统、HDFS、HBASE、数据库
+文件的读取和保存
 
 
 

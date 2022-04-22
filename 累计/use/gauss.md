@@ -3,7 +3,7 @@
 ```sql
 -- 建表
 create table dbName.tableName(
-    id varchar2(64),
+    id varchar2(64) PRIMARY KEY,
     acct_no varchar2(32),
     post_date date
 )

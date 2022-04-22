@@ -1683,3 +1683,19 @@ GET my_blog/article/_search
 ```
 
 > 这样聚合的话，包含的年份的每一个月的每一天的数据都会被分类，不管其是否包含文档。
+
+## 批量导数数据
+1、首先导入的数据文件，文件时json的格式，最后一定要多一行回车     
+_index:索引、_type:类型(es默认_doc),下面要插入的数据，一个数据文件的大小控制在10M左右。   
+2、可以通过curl -XPUT "localhost:9200/_bulk" H "Content-Type:application/json" --data-binary @test1.json执行批量导入  
+3、新建脚本
+  ```sh
+  #!bash
+  i = 0
+  while (($i<100))
+  do
+      let "i++"
+      echo test"$i".json
+      url -XPUT "localhost:9200/_bulk" H "Content-Type:application/json" --data-binary @test"$i".json
+  done
+  ```

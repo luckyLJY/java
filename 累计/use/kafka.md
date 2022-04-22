@@ -216,5 +216,20 @@ bin/kafka-reassign-partitions.sh --zookeeper localhost:2181 --reassignment-json-
 bin/kafka-reassign-partitions.sh --zookeeper localhost:2181 --reassignment-json-file increase-replication-factor.json --verify
 
 ```
+#### kafka的数据的分区
+第一种分区策略：给定了分区号，直接将数据发送到指定的分区里面去；  
+第二种分区策略：没有给定分区号，给定数据的key值，通过key取上hashCode进行分区；  
+第三种分区策略：既没有给定分区号，也没有给定key值，直接轮循进行分区；  
+第四种分区策略：自定义分区；  
+
+    producer.send(new ProducerRecord<String, String>("test", Integer.toString(i), Integer.toString(i)));
+    //kafka的第一种分区方式，如果给定了分区号，那么就直接将数据发送到指定的分区号里面去
+    //producer.send(new ProducerRecord<String, String>("test",2,"helloworld",i+""));
+    //kafka的第二种分区策略，没有给定分区号，给定了数据的key，那么就通过key取hashcode，将数据均匀的发送到三台机器里面去
+    //注意如果实际工作当中，要通过key取上hashcode来进行分区，那么就一定要 保证key的变化，否则，数据就会全部去往一个分区里面
+    producer.send(new ProducerRecord<String, String>("test",i+"",i+""));
+    //kafka的第三种分区策略，既没有给定分区号，也没有给定数据的key值，那么就会按照轮循的方式进行数的发送
+    producer.send(new ProducerRecord<String, String>("test",i+""));
+    //kafka的第四种分区策略，自定义分区类，实现我们数据的分区
 
 ### hive
