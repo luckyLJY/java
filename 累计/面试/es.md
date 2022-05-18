@@ -1,21 +1,5 @@
 ## 笔记
 
-### 集群
-
-```powershell
-# 查询集群健康状态
-GET _cluster/health
-
-# 查询所有节点
-GET _cat/nodes
-
-# 查询指定索引分片的分布
-GET _cat/shards/order_stpprdinf_2019-12?v
-
-# 查询所有插件
-GET _cat/plugins
-```
-
 ### 索引相关查询
 
 ```powershell
@@ -1684,7 +1668,7 @@ GET my_blog/article/_search
 
 > 这样聚合的话，包含的年份的每一个月的每一天的数据都会被分类，不管其是否包含文档。
 
-## 批量导数数据
+## ES批量导数数据
 1、首先导入的数据文件，文件时json的格式，最后一定要多一行回车     
 _index:索引、_type:类型(es默认_doc),下面要插入的数据，一个数据文件的大小控制在10M左右。   
 2、可以通过curl -XPUT "localhost:9200/_bulk" H "Content-Type:application/json" --data-binary @test1.json执行批量导入  
@@ -1699,3 +1683,87 @@ _index:索引、_type:类型(es默认_doc),下面要插入的数据，一个数�
       url -XPUT "localhost:9200/_bulk" H "Content-Type:application/json" --data-binary @test"$i".json
   done
   ```
+
+
+
+
+
+
+
+## ES快速入门
+#### Linux docker环境下安装es
+- 下载es的docker镜像
+  ```sh
+  docker pull elasticsearch:6.4.0
+  ```
+- 修改虚拟内存区域大小，否则会因为过小而无法启动
+  ```sh
+  sysctl -w vm.max_map_count=262144
+  ```
+- 使用docker命令启动
+  ```sh
+  docker run -p 9200:9200 -p 9300:9300 --name elasticsearch \
+  -e "discovery.type=single-node" \
+  -e "cluster.name=elasticsearch" \
+  -v /mydata/elasticsearch/plugins:/usr/share/elasticsearch/plugins \
+  -v /mydata/elasticsearch/data:/usr/share/elasticsearch/data \
+  -d elasticsearch:6.4.0
+  ```
+- 启动时会发现/usr/share/elasticsearch/data目录没有访问权限，只需要修改该目录的权限，再重新启动即可；
+  ```sh
+  chmod 777 /mydata/elasticsearch/data/
+  ```
+- 安装中文分词器IKAnalyzer，并重新启动；
+  ```sh
+  docker exec -it elasticsearch /bin/bash
+  #此命令需要在容器中运行
+  elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v6.4.0/elasticsearch-analysis-ik-6.4.0.zip
+  docker restart elasticsearch
+  ```
+
+kibina
+- 下载kibana的docker镜像
+  ```sh
+  docker pull kibana:6.4.0
+  ````
+- 使用docker命令启动
+  ```sh
+  docker run --name kibana -p 5601:5601 \
+  --link elasticsearch:es \
+  -e "elasticsearch.hosts=http://es:9200" \
+  -d kibana:6.4.0
+  ```
+#### 相关概念
+- Near Realtime(近实时):es是一个近乎实时的搜素平台，这意味着从索引文档到可搜素文档之间只有一个轻微的延迟(通常是一秒钟)。
+- Cluster(集群):集群是一个或多个节点的集合，它们一起整合数据，并提供跨所有节点的联合索引和搜素功能。每个集群都有自己的唯一集群名称，节点通过名称加入集群。
+- Node(节点):节点是属于集群的单个es实例，存储数据并参与集群的索引和搜素功能。可以将节点配置为按集群名称加入特定集群，默认情况下，每个节点都设置为加入一个名为elasticsearch的集群。
+- Index(索引):索引是一些具有相似特征的文档集合。
+- Type(类型):类型是索引的逻辑类别分区，通常，为具有一组公共字段的文档类型，es高版本中一个索引之能包含一个类型。 
+- Document(文档):文档是可被索引的基本信息单位，以JSON形式表示。
+- Shards(分片):分片机制赋予了索引水平扩容的能力、并允许跨分片分发和并行化操作，从而提高性能和吞吐量。
+- Replicas(副本):索引的分片复制为一个或多个副本的功能，副本在某些节点失效的情况下提供高可用性。
+#### 集群状态
+- 查看集群健康状态
+  ```sh
+  GET /_cat/health?v
+
+  epoch      timestamp cluster       status node.total node.data shards pri relo init unassign pending_tasks max_task_wait_time active_shards_percent
+  1585552862 15:21:02  elasticsearch yellow          1         1     27  27    0    0       25             0                  -                 51.9%
+
+  ```
+- 查看节点状态
+  ```sh
+  GET /_cat/nodes?v
+
+  ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role master name
+  127.0.0.1           23          94  28                          mdi       *      KFFjkpV
+  ```
+- 查看所有索引信息
+  ```sh
+  GET /_cat/indices?v
+
+  health status index    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+  green  open   pms      xlU0BjEoTrujDgeL6ENMPw   1   0         41            0     30.5kb         30.5kb
+  green  open   .kibana  ljKQtJdwT9CnLrxbujdfWg   1   0          2            1     10.7kb         10.7kb
+  ```
+#### 

@@ -36,7 +36,7 @@ public class EsProductServiceImpl implements EsProductService {
     private EsProductDao productDao;
     @Autowired
     private EsProductRepository productRepository;
-
+    @Autowired
 
     @Override
     public int importAll() {
