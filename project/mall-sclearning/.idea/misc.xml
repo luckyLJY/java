@@ -4,7 +4,6 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-client/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-security-server/pom.xml" />
@@ -21,6 +20,9 @@
         <option value="$PROJECT_DIR$/nacos-user-service/pom.xml" />
         <option value="$PROJECT_DIR$/nacos-config-client/pom.xml" />
         <option value="$PROJECT_DIR$/nacos-ribbon-service/pom.xml" />
+        <option value="$PROJECT_DIR$/sentinel-service/pom.xml" />
+        <option value="$PROJECT_DIR$/oauth2-server/pom.xml" />
+        <option value="$PROJECT_DIR$/oauth2-jwt-server/pom.xml" />
       </list>
     </option>
   </component>

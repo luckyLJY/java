@@ -11,8 +11,13 @@
     <file url="file://$PROJECT_DIR$/nacos-config-client/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nacos-ribbon-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nacos-user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/oauth2-jwt-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/oauth2-jwt-server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/oauth2-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ribbon-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ribbon-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sentinel-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sentinel-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/turbine-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zuul-proxy/src/main/java" charset="UTF-8" />

@@ -11,14 +11,17 @@
         <module name="eureka-security-server" />
         <module name="zuul-proxy" />
         <module name="user-service" />
-        <module name="mall-sclearning" />
         <module name="eureka-server" />
+        <module name="oauth2-jwt-service" />
         <module name="config-server" />
         <module name="eureka-client" />
         <module name="nacos-config-client" />
+        <module name="oauth2-jwt-server" />
         <module name="nacos-user-service" />
         <module name="hystrix-dashboard" />
         <module name="ribbon-service" />
+        <module name="sentinel-service" />
+        <module name="oauth2-server" />
         <module name="feign-service" />
         <module name="nacos-ribbon-service" />
       </profile>
@@ -26,6 +29,8 @@
     <bytecodeTargetLevel>
       <module name="demo" target="8" />
       <module name="demo1" target="8" />
+      <module name="mall-sclearning" target="8" />
+      <module name="oauth2-jwt-service" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -40,7 +45,10 @@
       <module name="nacos-config-client" options="-parameters" />
       <module name="nacos-ribbon-service" options="-parameters" />
       <module name="nacos-user-service" options="-parameters" />
+      <module name="oauth2-jwt-server" options="-parameters" />
+      <module name="oauth2-server" options="-parameters" />
       <module name="ribbon-service" options="-parameters" />
+      <module name="sentinel-service" options="-parameters" />
       <module name="turbine-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
       <module name="zuul-proxy" options="-parameters" />
